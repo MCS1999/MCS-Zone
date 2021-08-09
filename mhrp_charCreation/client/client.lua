@@ -933,7 +933,7 @@ Citizen.CreateThread(function()
 	end
 end)
 
-AddEventHandler("MapleHearts:Client:OnPlayerLoaded", function()
+AddEventHandler("QBCore:Client:OnPlayerLoaded", function()
     TriggerServerEvent("clothing:checkIfNew")
 end)
 
@@ -963,7 +963,7 @@ AddEventHandler("mhrp_charCreation:setclothes", function(data,alreadyExist)
     local function setDefault()
         Citizen.CreateThread(function()
             firstChar = true
-            local LocalPlayer = MapleHearts.Functions.GetPlayerData()
+            local LocalPlayer = QBCore.Functions.GetPlayerData()
             local gender = LocalPlayer.charinfo.gender
             Citizen.Wait(5000)
             if gender ~= 0 then
@@ -985,7 +985,7 @@ AddEventHandler("mhrp_charCreation:setclothes", function(data,alreadyExist)
             end
             TriggerEvent("tokovoip:onPlayerLoggedIn", true)
             
-            TriggerEvent("customNotification","Looks like you picked a character, nice job! Welcome to MapleHearts Roleplay 2.0")
+            TriggerEvent("customNotification","Looks like you picked a character, nice job! Welcome to QBCore Roleplay 2.0")
             SetNewWaypoint(312.96966552734,-218.2705078125)
             local dstHt = #(vector3(GetEntityCoords(PlayerPedId())) - vector3(312.96966552734,-218.2705078125,54.221797943115))
 
@@ -1024,7 +1024,7 @@ end)
 
 RegisterNetEvent("mhrp_charCreation:defaultReset")
 AddEventHandler("mhrp_charCreation:defaultReset", function()
-    local LocalPlayer = MapleHearts.Functions.GetPlayerData()
+    local LocalPlayer = QBCore.Functions.GetPlayerData()
     local gender = LocalPlayer.charinfo.gender
     Citizen.Wait(1000)
     if gender ~= 0 then

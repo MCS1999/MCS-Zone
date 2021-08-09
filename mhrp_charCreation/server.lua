@@ -1,7 +1,7 @@
 --[[ Not Needed But Lets Keep it just incase the api is not being called
-MapleHearts = nil
+QBCore = nil
 
-TriggerEvent('MapleHearts:GetObject', function(obj) MapleHearts = obj end) -- Just to reinforce the API if it ever becomes nil
+TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end) -- Just to reinforce the API if it ever becomes nil
 ]]
 local function checkExistenceClothes(cid, cb)
     exports['ghmattimysql']:execute("SELECT cid FROM character_current WHERE cid = @cid LIMIT 1;", {["cid"] = cid}, function(result)
@@ -21,7 +21,7 @@ RegisterServerEvent("mhrp_charCreation:insert_character_current")
 AddEventHandler("mhrp_charCreation:insert_character_current",function(data)
     if not data then return end
     local src = source
-    local user = MapleHearts.Functions.GetPlayer(source)
+    local user = QBCore.Functions.GetPlayer(source)
     local characterId = user.PlayerData.citizenid
     if not characterId then return end
     checkExistenceClothes(characterId, function(exists)
@@ -56,7 +56,7 @@ AddEventHandler("mhrp_charCreation:insert_character_face",function(data)
 
     print('[MHRP] - INSERT FACE : SERVER : CALLED', src)
 
-    local user = MapleHearts.Functions.GetPlayer(src)
+    local user = QBCore.Functions.GetPlayer(src)
     local characterId = user.PlayerData.citizenid
 
     print('[MHRP] - INSERT FACE : SERVER : Got CID', characterId)
@@ -94,7 +94,7 @@ end)
 RegisterServerEvent("mhrp_charCreation:get_character_face")
 AddEventHandler("mhrp_charCreation:get_character_face",function(pSrc)
     local src = (not pSrc and source or pSrc)
-    local user = MapleHearts.Functions.GetPlayer(src)
+    local user = QBCore.Functions.GetPlayer(src)
     local characterId = user.PlayerData.citizenid
 
     if not characterId then return end
@@ -118,7 +118,7 @@ end)
 RegisterServerEvent("mhrp_charCreation:get_character_current")
 AddEventHandler("mhrp_charCreation:get_character_current",function(pSrc)
     local src = (not pSrc and source or pSrc)
-    local user = MapleHearts.Functions.GetPlayer(src)
+    local user = QBCore.Functions.GetPlayer(src)
     local characterId = user.PlayerData.citizenid
 
     if not characterId then return end
@@ -138,7 +138,7 @@ end)
 RegisterServerEvent("mhrp_charCreation:retrieve_tats")
 AddEventHandler("mhrp_charCreation:retrieve_tats", function(pSrc)
     local src = (not pSrc and source or pSrc)
-	local user = MapleHearts.Functions.GetPlayer(src)
+	local user = QBCore.Functions.GetPlayer(src)
     local char = user.PlayerData.citizenid
 	exports['ghmattimysql']:execute("SELECT * FROM playersTattoos WHERE identifier = @identifier", {['identifier'] = user.PlayerData.citizenid}, function(result)
         if(#result == 1) then
@@ -154,7 +154,7 @@ end)
 RegisterServerEvent("mhrp_charCreation:set_tats")
 AddEventHandler("mhrp_charCreation:set_tats", function(tattoosList)
 	local src = source
-	local user = MapleHearts.Functions.GetPlayer(source)
+	local user = QBCore.Functions.GetPlayer(source)
     local char = user.PlayerData.citizenid
 	exports['ghmattimysql']:execute("UPDATE playersTattoos SET tattoos = @tattoos WHERE identifier = @identifier", {['tattoos'] = json.encode(tattoosList), ['identifier'] = user.PlayerData.citizenid})
 end)
@@ -165,7 +165,7 @@ AddEventHandler("mhrp_charCreation:get_outfit",function(slot)
     if not slot then return end
     local src = source
 
-    local user = MapleHearts.Functions.GetPlayer(source)
+    local user = QBCore.Functions.GetPlayer(source)
     local characterId = user.PlayerData.citizenid
 
     if not characterId then return end
@@ -214,7 +214,7 @@ AddEventHandler("mhrp_charCreation:set_outfit",function(slot, name, data)
     if not slot then return end
     local src = source
 
-    local user = MapleHearts.Functions.GetPlayer(source)
+    local user = QBCore.Functions.GetPlayer(source)
     local characterId = user.PlayerData.citizenid
 
     if not characterId then return end
@@ -266,7 +266,7 @@ RegisterServerEvent("mhrp_charCreation:remove_outfit")
 AddEventHandler("mhrp_charCreation:remove_outfit",function(slot)
 
     local src = source
-    local user = MapleHearts.Functions.GetPlayer(source)
+    local user = QBCore.Functions.GetPlayer(source)
     local cid = user.PlayerData.citizenid
     local slot = slot
 
@@ -279,7 +279,7 @@ end)
 RegisterServerEvent("mhrp_charCreation:list_outfits")
 AddEventHandler("mhrp_charCreation:list_outfits",function()
     local src = source
-    local user = MapleHearts.Functions.GetPlayer(source)
+    local user = QBCore.Functions.GetPlayer(source)
     local cid = user.PlayerData.citizenid
     local slot = slot
     local name = name
@@ -295,7 +295,7 @@ RegisterServerEvent("clothing:checkMoney")
 AddEventHandler("clothing:checkMoney", function(menu,askingPrice)
     
     local src = source
-	local xPlayer = MapleHearts.Functions.GetPlayer(source)
+	local xPlayer = QBCore.Functions.GetPlayer(source)
 
     TriggerClientEvent("mhrp_charCreation:hasEnough",src,menu)
 
