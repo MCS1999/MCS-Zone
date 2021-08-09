@@ -1,7 +1,7 @@
 resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
 
-shared_script ('@mhrp-core/import.lua') -- This is needed now to get the api in any script.. much more simpler and makes it more universal in any script.
+shared_script ('@qb-core/import.lua') -- This is needed now to get the api in any script.. much more simpler and makes it more universal in any script.
 server_script('server.lua')
 --server_script('@mysql-async/lib/MySQL.lua') # Not Being Used but lets save just incase #MCS
 
