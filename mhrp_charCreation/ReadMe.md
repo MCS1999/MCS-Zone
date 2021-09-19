@@ -11,7 +11,7 @@ qb-multicharacter>client
             TriggerServerEvent('mhrp_charCreation:get_character_current')
 
 qb-spawn>client 
-    when ever your character is being spawned you need to run this event `TriggerServerEvent('mhrp_charCreation:get_character_current'`
+    when ever your character is being spawned you need to run this event `TriggerServerEvent('mhrp_charCreation:get_character_current')`
 
 
 there is no event yet for housing but all you would need to do is create an event to open the outfits function and you should be set this is FARRRR from being perfect but its functionality works you can create your character, you can use the stores and you can save and load outfits it has many more features and much potential but that will come with time.
